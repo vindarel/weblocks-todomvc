@@ -1,0 +1,20 @@
+* Weblocks-Todomvc
+
+Putting together Weblock's reblock quickstart
+http://40ants.com/weblocks/quickstart.html in its own project.
+
+** Installation
+
+Clone  Weblocks  from  https://github.com/40ants/weblocks/,  "reblock"
+branch, and this repo in =~/quicklisp/local-projects/= .
+
+** Usage
+
+Load  the   .asd  file   (=C-c  C-k=   in  Emacs'   Slime),  quickload
+weblocks-todomvc (=(ql:quickload  :weblocks-todomvc)=) (or =(asdf:make
+:weblocks-todomvc)=),
+
+optionally =(in-package :weblocks-todomvc)=,
+
+start  the  app  with =(weblocks-todomvc::start-app)=  and  access
+[[localhost:8080/tasks][localhost:8080/tasks-mvc]].

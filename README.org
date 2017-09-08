@@ -18,3 +18,7 @@ optionally =(in-package :weblocks-todomvc)=,
 
 start  the  app  with =(weblocks-todomvc::start-app)=  and  access
 [[localhost:8080/tasks][localhost:8080/tasks-mvc]].
+
+#+BEGIN_EXPORT html
+<img src='quickstart-check-task.gif', title='Weblocks interactive TODO MVC ajax calls.' </img>
+#+END_EXPORT

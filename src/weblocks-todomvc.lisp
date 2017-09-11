@@ -9,9 +9,9 @@
   (done))
 
 (defun init-user-session (root)
-  (let ((tasks (list (make-task :title "Make my first app in Weblocks" :done t)
-                     (make-task :title "Deploy it somewhere" :done nil)
-                     (make-task :title "Have a profit" :done nil))))
+  (let ((tasks (reverse (list (make-task :title "Make my first app in Weblocks" :done t)
+                              (make-task :title "Deploy it somewhere" :done nil)
+                              (make-task :title "Have a profit" :done nil)))))
     (labels ((add-task (&rest rest &key task &allow-other-keys)
                (log:info "Pushing" task "to" tasks rest)
                (push (make-task :title task :done nil) tasks)
@@ -40,7 +40,7 @@
               (with-html
                 (:h1 "Tasks")
                 (:div :class "tasks"
-                      (loop for task in tasks
+                      (loop for task in (reverse tasks)
                          do (cl-who:htm (render-task task))))
                 (with-html-form (:POST #'add-task)
                   (:input :type "text"

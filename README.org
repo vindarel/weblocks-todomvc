@@ -22,3 +22,20 @@ start  the  app  with =(weblocks-todomvc::start-app)=  and  access
 #+BEGIN_EXPORT html
 <img src='quickstart-check-task.gif', title='Weblocks interactive TODO MVC ajax calls.' </img>
 #+END_EXPORT
+
+** Run as a Desktop app with Ceramic
+
+This launches a desktop window with our app:
+
+: (weblocks-todomvc.desktop:start-dev-app)
+
+You may need to download Ceramic's dependencies (i.e., Electron) with
+
+: (ceramic:start)
+
+- Ceramic documentation: https://ceramic.github.io/docs/tutorial.html
+
+
+#+BEGIN_EXPORT html
+<img src='tasks-ceramic.png', title='Running our Tasks app with Ceramic' </img>
+#+END_EXPORT

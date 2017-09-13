@@ -1,7 +1,10 @@
 (in-package :cl-user)
 (defpackage weblocks-todomvc
   (:use :cl
-        :weblocks))
+        :weblocks)
+  (:export #:start-app
+           #:restart-app
+           #:stop-app))
 (in-package :weblocks-todomvc)
 
 (defstruct task
@@ -49,12 +52,15 @@
                   (:input :type "submit"
                           :value "Add"))))))))
 
-(defun start-app ()
+(defun start-app (&rest args)
+  ;; xxx give the port as argument.
   (defwebapp tasks-mvc
       :init-user-session #'init-user-session)
-  (start-webapp 'tasks-mvc)
-  (weblocks.server:start-weblocks))
+  (start-webapp 'tasks-mvc))
 
 (defun restart-app ()
   (progn (weblocks:restart-webapp 'tasks-mvc)
          (weblocks.session:reset-latest-session)))
+
+(defun stop-app (&rest args)
+  (weblocks.server:stop-weblocks))

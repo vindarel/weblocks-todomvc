@@ -11,10 +11,13 @@
   :version "0.1"
   :author ""
   :license ""
-  :depends-on (:weblocks)
+  :depends-on (:weblocks
+               :ceramic
+               :find-port)
   :components ((:module "src"
                 :components
-                ((:file "weblocks-todomvc"))))
+                ((:file "weblocks-todomvc")
+                 (:file "desktop"))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames

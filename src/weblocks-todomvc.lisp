@@ -56,11 +56,13 @@
   ;; xxx give the port as argument.
   (defwebapp tasks-mvc
       :init-user-session #'init-user-session)
+  ;; the following argument also defines the url to access the app
+  ;; (better a string ?).
   (start-webapp 'tasks-mvc))
 
 (defun restart-app ()
   (progn (weblocks:restart-webapp 'tasks-mvc)
-         (weblocks.session:reset-latest-session)))
+         (weblocks.debug:reset-latest-session)))
 
 (defun stop-app (&rest args)
   (weblocks.server:stop-weblocks))

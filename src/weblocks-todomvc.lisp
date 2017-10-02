@@ -58,7 +58,8 @@
       :init-user-session #'init-user-session)
   ;; the following argument also defines the url to access the app
   ;; (better a string ?).
-  (start-webapp 'tasks-mvc))
+  (start-webapp 'tasks-mvc)
+  (weblocks.server:start-weblocks))
 
 (defun restart-app ()
   (progn (weblocks:restart-webapp 'tasks-mvc)

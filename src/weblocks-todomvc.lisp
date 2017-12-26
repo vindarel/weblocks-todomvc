@@ -1,7 +1,8 @@
 (in-package :cl-user)
 (defpackage weblocks-todomvc
   (:use :cl
-        :weblocks)
+        :weblocks
+        :weblocks.ui.form)
   (:export #:start-app
            #:restart-app
            #:stop-app))

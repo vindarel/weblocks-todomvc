@@ -12,6 +12,7 @@
   :author ""
   :license ""
   :depends-on (:weblocks
+               :weblocks-ui
                :ceramic
                :find-port)
   :components ((:module "src"

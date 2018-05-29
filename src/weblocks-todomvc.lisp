@@ -56,16 +56,15 @@
 (defun start-app (&key (port 8080))
   "To use a custom port, we can pass :port (find-port:find-port) as argument."
   ;; xxx give the port as argument.
-  (defwebapp tasks-mvc
-      :init-user-session #'init-user-session)
+  (weblocks/app:defapp tasks-mvc)
   ;; the following argument also defines the url to access the app
   ;; (better a string ?).
-  (start-webapp 'tasks-mvc)
-  (weblocks.server:start-weblocks :port port))
+  (weblocks/app:start 'tasks-mvc)
+  (weblocks/server:start :port port))
 
 (defun restart-app ()
-  (progn (weblocks:restart-webapp 'tasks-mvc)
-         (weblocks.debug:reset-latest-session)))
+  (progn (weblocks/app:restart 'tasks-mvc)
+         (weblocks/debug:reset-latest-session)))
 
-(defun stop-app (&rest args)
-  (weblocks.server:stop-weblocks))
+(defun stop-app ()
+  (weblocks/server:stop))

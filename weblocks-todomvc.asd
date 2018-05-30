@@ -2,12 +2,7 @@
   This file is a part of weblocks-todomvc project.
 |#
 
-(in-package :cl-user)
-(defpackage weblocks-todomvc-asd
-  (:use :cl :asdf))
-(in-package :weblocks-todomvc-asd)
-
-(defsystem weblocks-todomvc
+(asdf:defsystem weblocks-todomvc
   :version "0.1"
   :author ""
   :license ""
@@ -19,17 +14,5 @@
                 :components
                 ((:file "weblocks-todomvc")
                  (:file "desktop"))))
-  :description ""
-  :long-description
-  #.(with-open-file (stream (merge-pathnames
-                             #p"README.org"
-                             (or *load-pathname* *compile-file-pathname*))
-                            :if-does-not-exist nil
-                            :direction :input)
-      (when stream
-        (let ((seq (make-array (file-length stream)
-                               :element-type 'character
-                               :fill-pointer t)))
-          (setf (fill-pointer seq) (read-sequence seq stream))
-          seq)))
+  :description "TodoMVC example with the Weblocks Common Lisp web framework."
   :in-order-to ((test-op (test-op weblocks-todomvc-test))))

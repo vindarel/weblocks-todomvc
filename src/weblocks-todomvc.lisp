@@ -90,6 +90,8 @@
 (defvar *root* nil
   "Our root widget.")
 
+(weblocks/app:defapp tasks-mvc)
+
 (defmethod weblocks/session:init ((app tasks-mvc))
   (declare (ignorable app))
   (setf *root* (make-instance 'task-list :tasks some-tasks)))
@@ -97,7 +99,6 @@
 (defun start-app (&key (port 8080))
   "To use a custom port, we can pass :port (find-port:find-port) as argument."
   ;; xxx give the port as argument.
-  (weblocks/app:defapp tasks-mvc)
   (weblocks/debug:on)
   ;; the following argument also defines the url to access the app
   ;; (better a string ?).

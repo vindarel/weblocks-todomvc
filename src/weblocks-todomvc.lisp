@@ -29,7 +29,7 @@
   (print-unreadable-object (task stream :type t)
     (format stream "~a, done ? ~a" (title task) (done task))))
 
-(defmethod togle ((task task))
+(defmethod toggle ((task task))
   (setf (done task)
         (if (done task)
             nil
@@ -43,7 +43,7 @@
                 :onclick (make-js-action
                           (lambda (&rest rest)
                             (declare (ignore rest))
-                            (togle task))))
+                            (toggle task))))
         (:span (if (done task)
                    (with-html
                      (:s (title task)))

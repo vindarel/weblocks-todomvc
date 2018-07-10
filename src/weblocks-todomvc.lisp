@@ -55,20 +55,23 @@
   ;; todo: can we have functions outside of init-user-session ?? Last time I tried, no.
   (make-instance 'task :title title :done done))
 
-(defvar some-tasks (list
-                    (make-task :title "1st task")
-                    (make-task :title "second task")))
 
 (defun add-task (&rest rest &key title &allow-other-keys)
-  (log:info "Pushing " title " to " (tasks *root*) rest)
-  (push (make-task :title title) (tasks *root*))
-  (log:info "updating root: " *root*)
-  (update *root*))
+  (let ((root (weblocks/widgets/root:get)))
+    (log:info "Pushing " title " to " (tasks root) rest)
+    (push (make-task :title title) (tasks root))
+    (log:info "updating root: " root)
+    (update root)))
 
 (defwidget task-list ()
   ((tasks
     :initarg :tasks
     :accessor tasks)))
+
+(defun make-task-list (&rest rest)
+  "Create some tasks from titles."
+  (loop for title in rest collect
+       (make-task :title title)))
 
 (defmethod render ((widget task-list))
   (with-html
@@ -87,26 +90,27 @@
 
 (setf weblocks/variables:*invoke-debugger-on-error* nil)
 
-(defvar *root* nil
-  "Our root widget.")
 
-(weblocks/app:defapp tasks-mvc)
+(weblocks/app:defapp todomvc)
 
-(defmethod weblocks/session:init ((app tasks-mvc))
+(defmethod weblocks/session:init ((app todomvc))
   (declare (ignorable app))
-  (setf *root* (make-instance 'task-list :tasks some-tasks)))
+  (let ((tasks (make-task-list "Make my first Weblocks app"
+                               "Deploy it somewhere"
+                               "Have a profit")))
+    (make-instance 'task-list :tasks tasks)))
 
-(defun start-app (&key (port 8080))
+(defun start-app (&key (port 4000))
   "To use a custom port, we can pass :port (find-port:find-port) as argument."
   ;; xxx give the port as argument.
   (weblocks/debug:on)
   ;; the following argument also defines the url to access the app
   ;; (better a string ?).
-  (weblocks/app:start 'tasks-mvc)
+  (weblocks/app:start 'todomvc)
   (weblocks/server:start :port port))
 
 (defun restart-app ()
-  (progn (weblocks/app:restart 'tasks-mvc)
+  (progn (weblocks/app:restart 'todomvc)
          (weblocks/debug:reset-latest-session)))
 
 (defun stop-app ()

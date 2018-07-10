@@ -19,8 +19,8 @@ weblocks-todomvc (=(ql:quickload  :weblocks-todomvc)=) (or =(asdf:make
 
 optionally =(in-package :weblocks-todomvc)=,
 
-start  the  app  with =(weblocks-todomvc::start-app)=  and  access
-[[localhost:8080/tasks][localhost:8080/tasks-mvc]].
+start  the  app  with =(weblocks-todomvc:start-app)=  and  access
+[[localhost:8080/tasks][localhost:4000/todomvc]].
 
 #+html: <p align='center'><img src='quickstart-check-task.gif' /></p>
 

@@ -36,3 +36,7 @@
   ;; missing asset files
   (handler-bind ((warning #'muffle-warning))
     (run)))
+
+(defun build-ceramic ()
+  (ceramic:bundle :WEBLOCKS-TODOMVC :bundle-pathname #p"build/todomvc.tar")
+  )

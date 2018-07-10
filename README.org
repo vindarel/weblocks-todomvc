@@ -1,7 +1,10 @@
 * Weblocks-Todomvc
 
-Putting together Weblock's reblock quickstart
+Putting the new Weblock's quickstart
 http://40ants.com/weblocks/quickstart.html in its own project.
+
+An  interactive TODO-MVC  built with  Weblock's components,  without a
+line of Javascript.
 
 ** Installation
 
@@ -23,7 +26,7 @@ start  the  app  with =(weblocks-todomvc::start-app)=  and  access
 <img src='quickstart-check-task.gif', title='Weblocks interactive TODO MVC ajax calls.' </img>
 #+END_EXPORT
 
-** Run as a Desktop app with Ceramic
+** Run as a Desktop app with Ceramic (in progress)
 
 This launches a desktop window with our app:
 

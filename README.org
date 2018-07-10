@@ -22,9 +22,7 @@ optionally =(in-package :weblocks-todomvc)=,
 start  the  app  with =(weblocks-todomvc::start-app)=  and  access
 [[localhost:8080/tasks][localhost:8080/tasks-mvc]].
 
-#+BEGIN_EXPORT html
-<img src='quickstart-check-task.gif', title='Weblocks interactive TODO MVC ajax calls.' </img>
-#+END_EXPORT
+#+html: <p align='center'><img src='quickstart-check-task.gif' /></p>
 
 ** Run as a Desktop app with Ceramic (in progress)
 
@@ -38,7 +36,4 @@ You may need to download Ceramic's dependencies (i.e., Electron) with
 
 - Ceramic documentation: https://ceramic.github.io/docs/tutorial.html
 
-
-#+BEGIN_EXPORT html
-<img src='tasks-ceramic.png', title='Running our Tasks app with Ceramic' </img>
-#+END_EXPORT
+#+html: <p align='center'><img src='tasks-ceramic.png' /></p>

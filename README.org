@@ -8,19 +8,26 @@ line of Javascript.
 
 ** Installation
 
-Clone  Weblocks  from  https://github.com/40ants/weblocks/,  "reblock"
+Clone  Weblocks  from  https://github.com/40ants/weblocks/, "reblock"
 branch, and this repo in =~/quicklisp/local-projects/= .
 
 ** Usage
 
-Load  the   .asd  file   (=C-c  C-k=   in  Emacs'   Slime),  quickload
-weblocks-todomvc (=(ql:quickload  :weblocks-todomvc)=) (or =(asdf:make
-:weblocks-todomvc)=),
+You can build a self-contained executable:
 
-optionally =(in-package :weblocks-todomvc)=,
+: make build
 
-start  the  app  with =(weblocks-todomvc:start-app)=  and  access
-[[localhost:8080/tasks][localhost:4000/todomvc]].
+and run it with =./weblocks-todomvc=.
+
+Or in your  development environment, load the .asd file  (=C-c C-k= in
+Emacs' Slime), quickload weblocks-todomvc and its dependencies:
+
+: (ql:quickload       :weblocks-todomvc) ;; or (asdf:make :weblocks-todomvc)
+
+optionally do =(in-package :weblocks-todomvc)=,
+
+start  the  app  with  =(weblocks-todomvc:start-app)=  and  access  it
+through [[localhost:8080/tasks][localhost:4000/todomvc]].
 
 #+html: <p align='center'><img src='quickstart-check-task.gif' /></p>
 
@@ -37,3 +44,14 @@ You may need to download Ceramic's dependencies (i.e., Electron) with
 - Ceramic documentation: https://ceramic.github.io/docs/tutorial.html
 
 #+html: <p align='center'><img src='tasks-ceramic.png' /></p>
+
+* Resources
+
+Lisp ?!
+
+- http://common-lisp.net/
+- http://lisp-lang.org/success/
+- https://github.com/CodyReichert/awesome-cl
+- https://lispcookbook.github.io/cl-cookbook/
+
+Notes for the web: https://lisp-journey.gitlab.io/web-dev/

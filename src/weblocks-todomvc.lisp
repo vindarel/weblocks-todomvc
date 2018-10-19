@@ -13,7 +13,8 @@
                 #:make-js-action)
   (:export #:start-app
            #:restart-app
-           #:stop-app))
+           #:stop-app
+           #:main))
 (in-package :weblocks-todomvc)
 
 (defwidget task ()
@@ -41,8 +42,7 @@
     (:p (:input :type "checkbox"
                 :checked (done task)
                 :onclick (make-js-action
-                          (lambda (&rest rest)
-                            (declare (ignore rest))
+                          (lambda (&key &allow-other-keys)
                             (toggle task))))
         (:span (if (done task)
                    (with-html
@@ -91,7 +91,7 @@
 (setf weblocks/variables:*invoke-debugger-on-error* nil)
 
 
-(weblocks/app:defapp todomvc)
+(weblocks/app:defapp todomvc)           ;; -> localhost:PORT/todomvc
 
 (defmethod weblocks/session:init ((app todomvc))
   (declare (ignorable app))
@@ -102,7 +102,6 @@
 
 (defun start-app (&key (port 4000))
   "To use a custom port, we can pass :port (find-port:find-port) as argument."
-  ;; xxx give the port as argument.
   (weblocks/debug:on)
   ;; the following argument also defines the url to access the app
   ;; (better a string ?).
@@ -115,3 +114,16 @@
 
 (defun stop-app ()
   (weblocks/server:stop))
+
+(defun main (&key (port 4000))
+  (start-app :port port)
+  (handler-case
+      (bt:join-thread (find-if (lambda (th)
+                                 (search "hunchentoot" (bt:thread-name th)))
+                               (bt:all-threads)))
+    (#+sbcl sb-sys:interactive-interrupt
+      () (progn
+           (format *error-output* "Aborting.~&")
+           (stop-app)
+           (uiop:quit 1))
+      (error (c) (format t "An unkown error occured: ~a~&" c)))))

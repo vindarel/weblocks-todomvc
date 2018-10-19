@@ -11,9 +11,8 @@
 (defun run ()
   (let ((port (find-port:find-port)))
     (log:info "Starting weblocks-todomvc on port"
-              ;; port
-              8080)
-    (weblocks-todomvc:start-app)
+              port)
+    (weblocks-todomvc:start-app :port port)
 
     (log:debug "Creating window")
     (setf *window*
